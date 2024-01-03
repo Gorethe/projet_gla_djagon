@@ -1,0 +1,51 @@
+{% extends 'master/dashmaster.html' %}
+{% block content %}
+{% load static %}
+
+<style>
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh; /* Assure que le conteneur prend au moins toute la hauteur de la fenêtre de visualisation */
+    }
+    .form-container {
+        width: 100%; /* ou une largeur spécifique si nécessaire */
+        max-width: 400px; /* Ajustez en fonction de la largeur souhaitée du formulaire */
+    }
+</style>
+
+<div class="main-content">
+    {% if user.is_authenticated %}
+        <div class="title">
+            You are logged in as {{ user.username }}
+        </div>
+    {% else %}
+        <div class="login-container">
+            <div class="form-container">
+                <div class="title">
+                    Login Form
+                </div>
+
+                <form class="user" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control-user" name="username" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Username...">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control form-control-user" name="password" id="exampleInputPassword" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox small">
+                            {% for message in messages %}
+                                <p style="color:red">{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <input type="submit" value="Sign In" name="signin" class="btn btn-primary btn-user btn-block">
+                </form>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
