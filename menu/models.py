@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField
+from django.utils import timezone 
+
 
 # Create your models here.
 class MainMenu(models.Model):
@@ -40,15 +42,17 @@ class MenuItems(models.Model):
         super(MenuItems, self).save(*args, **kwargs)
 
 class Chef(models.Model):
-    name = models.CharField(max_length=60, unique=True)
+    name = models.CharField(max_length=60)
     main_menu = models.ForeignKey(MainMenu, on_delete=models.CASCADE,blank=True)
     description = models.TextField(max_length=400)
     joindate = models.CharField(max_length=60)
 
 
 class Contactus(models.Model):
-    fullname = models.CharField(max_length=60, unique=True)
-    email = models.CharField(max_length=60, unique=True)
-    subject = models.CharField(max_length=60, unique=True)
+    fullname = models.CharField(max_length=60)
+    email = models.CharField(max_length=60)
+    subject = models.CharField(max_length=60)
+    nbre_de_place = models.CharField(max_length=60)
+    rdv = models.DateTimeField(default=timezone.now)
     description = models.TextField(max_length=400)
     date = models.DateTimeField(auto_now_add=True)

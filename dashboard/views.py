@@ -102,7 +102,9 @@ def login(request):
 
 @login_required
 def usermessages(request):
-    messages = Contactus.objects.all()
+    # messages = Contactus.objects.all()
+    messages = Contactus.objects.all().order_by('-date')
+
     data ={
         'messages':messages,
     }

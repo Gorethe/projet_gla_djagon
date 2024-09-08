@@ -4,29 +4,43 @@
 
 <div class="main-content">
     <div class="title">
-        Message Box
+        Service de messagerie
     </div>
 
     <div class="menuform">
         <table class="table table-striped table-dark">
             <thead>
             <tr>
-                <th scope="col">Uid</th>
+                <!-- <th scope="col">Numero</th> -->
                 <th scope="col">Full Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Subject</th>
-                <th scope="col">Description</th>
-                <th scope="col">Statut</th>
+                <th scope="col">Places</th>
+                <th scope="col">Order date</th>
+                <th scope="col">States</th>
             </tr>
             </thead>
             <tbody>
             {%for message in messages %}
             <tr>
-                <th scope="row">{{message.id}}</th>
+                <!-- <th scope="row">{{message.id}}</th> -->
                 <td>{{message.fullname}}</td>
-                <td><a href="mailto:{{ message.email }}">{{ message.email }}</a></td>
+                <!-- <td><a href="mailto:{{ message.email }}">{{ message.email }}</a></td> -->
                 <td>{{message.subject}}</td>
-                <td>{{message.description}}</td>
+                <td>{{message.nbre_de_place}}</td>
+                <td>{{message.description}}</td> 
+                 <td>{{message.date}}</td> 
+                <!-- <td>
+                    <a href="mailto:{{ message.email }}">
+                      <button type="button" class="btn btn-warning" id="statusButton">Warning</button>
+                    </a>
+                </td> -->
+                <td>
+                    <a href="mailto:{{ message.email }}">
+                      <button type="button" class="btn btn-warning" data-email="{{ message.email }}">Warning</button>
+                    </a>
+                  </td>
+               
             </tr>
             {% endfor %}
             </tbody>
@@ -34,4 +48,53 @@
     </div>
 
 </div>
+
+
+
+
+  
+  <script>
+    // Fonction pour mettre à jour l'état d'un bouton
+    function updateButtonState(button, email) {
+      const statusKey = `buttonStatus-${email}`;
+      const expirationKey = `statusExpiration-${email}`;
+      const currentTime = new Date().getTime();
+  
+      const savedStatus = localStorage.getItem(statusKey);
+      const savedExpiration = localStorage.getItem(expirationKey);
+  
+      // Si le bouton a été précédemment cliqué et que l'expiration n'est pas dépassée
+      if (savedStatus === 'success' && savedExpiration && currentTime < savedExpiration) {
+        button.classList.remove('btn-warning');
+        button.classList.add('btn-success');
+        button.textContent = 'Success';
+      }
+    }
+  
+    // Fonction pour gérer le clic sur un bouton
+    function handleButtonClick(button, email) {
+      const statusKey = `buttonStatus-${email}`;
+      const expirationKey = `statusExpiration-${email}`;
+      const newExpiration = new Date().getTime() + 24 * 60 * 60 * 1000; // 24 heures
+  
+      localStorage.setItem(statusKey, 'success');
+      localStorage.setItem(expirationKey, newExpiration);
+  
+      button.classList.remove('btn-warning');
+      button.classList.add('btn-success');
+      button.textContent = 'Success';
+    }
+  
+    // Sélectionner tous les boutons et ajouter les écouteurs d'événements
+    document.querySelectorAll('button[data-email]').forEach(button => {
+      const email = button.getAttribute('data-email');
+  
+      // Vérifier l'état du bouton lors du chargement de la page
+      updateButtonState(button, email);
+  
+      // Ajouter l'événement de clic
+      button.addEventListener('click', () => handleButtonClick(button, email));
+    });
+  </script>
+  
 {% endblock %}

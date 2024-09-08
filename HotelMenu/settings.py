@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'menu',
     'ckeditor',
 ]
-ALLOWED_HOSTS = ['192.168.50.179', 'localhost', '127.0.0.1', '0.0.0.0']
+#ALLOWED_HOSTS = ['127.0.0.1 ', 'localhost', '127.0.0.1', '0.0.0.0']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.22','0.0.0.0']
+
 
 
 MIDDLEWARE = [
