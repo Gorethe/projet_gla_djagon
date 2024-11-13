@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Configuration par défaut du champ de clé primaire
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 # Application definition
 
@@ -42,7 +45,9 @@ INSTALLED_APPS = [
     'ckeditor',
 ]
 #ALLOWED_HOSTS = ['127.0.0.1 ', 'localhost', '127.0.0.1', '0.0.0.0']
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.22','0.0.0.0']
+#ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.22','0.0.0.0']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '10.10.10.222','0.0.0.0']
+
 
 
 

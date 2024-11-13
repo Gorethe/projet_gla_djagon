@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier Menu</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">  <!-- Si vous avez des styles -->
+</head>
+<body>
+    <div class="container">
+        <h2>Modifier le Menu</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}  <!-- Affiche le formulaire -->
+            <button type="submit" class="btn btn-primary">Sauvegarder</button>
+        </form>
+        <a href="{% url 'dashboard' %}">Retour au tableau de bord</a>  <!-- Lien pour revenir au tableau de bord -->
+    </div>
+</body>
+</html>

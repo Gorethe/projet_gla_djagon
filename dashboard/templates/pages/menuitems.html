@@ -29,7 +29,7 @@
             <li>Price : $ 2 </li>
         </div>
         <div class="col-md-12">
-            <h2>Menu Items Datum</h2>
+            <h2>Menu Items African Food</h2>
             <table class="table table-striped table-dark">
                 <thead>
                 <tr>
@@ -50,8 +50,9 @@
                     <td>{{menu.description}}</td>
                       <td>${{menu.price}}</td>
                     <td>
-                        <a class="btn btn-primary" href="{% url 'updatemenuitems' menu.title%}">Edit</a>
-                        <a class="btn btn-danger" href="{% url 'deleteitems' menu.title%}">Delete</a></td>
+                        <a class="btn btn-primary" href="{% url 'updatemenuitems' menu.title %}">Edit</a>
+                        <a class="btn btn-danger" href="{% url 'deleteitems' menu.title %}">Delete</a>
+
                 </tr>
                 {% endfor %}
                 </tbody>

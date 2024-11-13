@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import *
 from menu.models import *
+from django.shortcuts import get_object_or_404
+
 # Create your views here.
 @login_required
 def dashboard(request):
@@ -113,3 +115,26 @@ def usermessages(request):
 def logout(request):
     auth.logout(request)
     return redirect('dashboard')
+
+# Edition de MaimMenu ainsi que ca suppression  creation 27-09-2024
+
+def update_menu(request, id):
+    menu = get_object_or_404(MainMenu, id=id)
+    if request.method == 'POST':
+        form = MenuForm(request.POST, instance=menu)
+        if form.is_valid():
+            form.save()
+            return redirect('createmainmenu')  # Rediriger vers le tableau de bord
+    else:
+        form = MenuForm(instance=menu)
+    #return render(request, 'edit_menu.html', {'form': form})
+    #return render(request, 'pages/edit_menu.html', {'form': form})  # Mettre à jour le chemin ici
+    return render(request, 'pages/mainmenu.html', {'form': form})
+#
+def delete_menu(request, id):
+    menu = get_object_or_404(MainMenu, id=id)
+    if request.method == 'POST':
+        menu.delete()
+        return redirect('createmainmenu')  # Rediriger après suppression
+    return render(request, 'pages/delete_menu.html', {'menu': menu})  # Assure-toi que le chemin du template est correct
+  

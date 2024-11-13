@@ -1,0 +1,23 @@
+{% extends 'master/dashmaster.html' %}
+{% block content %}
+{% load static %}
+
+<div class="main-content">
+    <div class="title">
+        Delete Menu
+    </div>
+
+    <div class="menuform">
+       <div class="col-md-6">
+        <h4 style="color:red">Are you sure you want to delete the menu "{{ menu.title }}" (ID: {{ menu.id }})?</h4> 
+        <!-- <h4 style="color:red">Are you sure, you want to delete the menu "{{id}}" ?</h4>--menu.-->
+           <form action="{% url 'deletemenu' menu.id %}" method="POST">
+               {% csrf_token %}
+               <a class="btn btn-primary" href="{% url 'createmainmenu' %}">Cancel</a><!--menuitems-->
+               <input class="btn btn-danger" type="submit" name="Confirm">
+           </form>
+       </div>
+    </div>
+
+</div>
+{% endblock %}

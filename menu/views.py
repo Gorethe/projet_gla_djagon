@@ -42,3 +42,4 @@ def menudetails(request,name):
         'menus': menus,
     }
     return render(request, 'pages/menudetails.html', data)
+

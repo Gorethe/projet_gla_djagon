@@ -29,7 +29,7 @@ class MenuItems(models.Model):
     status = models.BooleanField(default=0)
     date = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(blank=True, upload_to='pictures')
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE,related_name='menu_items')
     description = models.TextField(max_length=400)
     price = models.CharField(max_length=100,default='3')
 
