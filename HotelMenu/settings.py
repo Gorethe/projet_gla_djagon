@@ -46,7 +46,8 @@ INSTALLED_APPS = [
 ]
 #ALLOWED_HOSTS = ['127.0.0.1 ', 'localhost', '127.0.0.1', '0.0.0.0']
 #ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.22','0.0.0.0']
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '10.10.10.222','0.0.0.0']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '10.10.10.112','0.0.0.0']
+#ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '10.10.20.15','0.0.0.0']
 
 
 
